@@ -26,6 +26,12 @@
         #timer span {
             font-weight: bold;
         }
+
+        #debug {
+            color: red;
+            margin-top: 20px;
+        }
+
     </style>
 </head>
 <body>
@@ -38,7 +44,10 @@
             <span id="seconds"></span>s
         </div>
     </div>
+    <!-- Debugging view -->
+    <div id="debug"></div>
     <script>
+        try {
         // Parse URL fragment to get date and time
         const urlFragment = window.location.hash.substring(1);
         const targetDate = new Date(urlFragment);
@@ -63,6 +72,10 @@
 
         // Update countdown every second
         setInterval(updateCountdown, 1000);
-    </script>
+        } catch (error) {
+            // Display errors in the debugging view
+            document.getElementById('debug').innerText = 'Error: ' + error.message;
+        }
+        </script>
 </body>
 </html>
