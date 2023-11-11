@@ -1,0 +1,28 @@
+name: UI Test Workflow
+
+on: [push]
+
+jobs:
+  ui-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install Dependencies
+      run: |
+        pip install selenium
+        pip install webdriver-manager
+
+    - name: Run UI Tests
+      run: |
+        python -m unittest discover -s tests
+
+    - name: Report Results
+      run: echo "UI Tests completed"
