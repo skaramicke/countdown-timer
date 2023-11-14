@@ -50,7 +50,7 @@
         try {
         // Parse URL fragment to get date and time
         const urlFragment = window.location.hash.substring(1);
-        const targetDate = new Date(urlFragment);
+        const targetDate = new Date(decodeURI(urlFragment));
 
         // Function to update the countdown
         function updateCountdown() {
